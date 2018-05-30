@@ -1,0 +1,59 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+-- -----------------------------------------------------
+-- Schema messageboard
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema messageboard
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `messageboard` DEFAULT CHARACTER SET latin1 ;
+USE `messageboard` ;
+
+-- -----------------------------------------------------
+-- Table `messageboard`.`users`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `messageboard`.`users` (
+  `user id` VARCHAR(30) NOT NULL,
+  `password` VARCHAR(30) NOT NULL,
+  `first name` VARCHAR(30) NOT NULL,
+  `last name` VARCHAR(30) NOT NULL,
+  `created date` DATETIME NOT NULL,
+  PRIMARY KEY (`user id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `messageboard`.`messages`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `messageboard`.`messages` (
+  `messages id` INT(11) NOT NULL AUTO_INCREMENT,
+  `created date` DATETIME NOT NULL,
+  `created by` VARCHAR(30) NOT NULL,
+  `title` VARCHAR(20) NOT NULL,
+  `content` VARCHAR(500) NOT NULL,
+  `last modified` DATETIME NOT NULL,
+  `last modified by` VARCHAR(30) NOT NULL,
+  PRIMARY KEY (`messages id`, `last modified by`),
+  INDEX `fk_messages_users_idx` (`last modified by` ASC),
+  CONSTRAINT `fk_messages_users`
+    FOREIGN KEY (`last modified by`)
+    REFERENCES `messageboard`.`users` (`user id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1
+COLLATE = latin1_german1_ci;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
