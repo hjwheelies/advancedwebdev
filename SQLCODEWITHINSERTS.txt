@@ -1,0 +1,71 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+set foreign_key_checks=0;
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+-- -----------------------------------------------------
+-- Schema messageboard
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema messageboard
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `messageboard` DEFAULT CHARACTER SET latin1 ;
+USE `messageboard` ;
+
+-- -----------------------------------------------------
+-- Table `messageboard`.`users`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `messageboard`.`users` (
+  `user id` VARCHAR(30) NOT NULL,
+  `password` VARCHAR(30) NOT NULL,
+  `first name` VARCHAR(30) NOT NULL,
+  `last name` VARCHAR(30) NOT NULL,
+  `created date` DATE NOT NULL,
+  PRIMARY KEY (`user id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `messageboard`.`messages`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `messageboard`.`messages` (
+  `messages id` INT(11) NOT NULL AUTO_INCREMENT,
+  `created date` DATE NOT NULL,
+  `created by` VARCHAR(30) NOT NULL,
+  `title` VARCHAR(20) NOT NULL,
+  `content` VARCHAR(500) NOT NULL,
+  `last modified` DATE NOT NULL,
+  `last modified by` VARCHAR(30) NOT NULL,
+  PRIMARY KEY (`messages id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1
+COLLATE = latin1_german1_ci;
+
+INSERT INTO `users` (`user id`,`password`,`first name`,`last name`,`created date`) 
+VALUES ('ballfan23','ballpass','Jennifer','Lawrence','2015-02-21');
+
+INSERT INTO `users` (`user id`,`password`,`first name`,`last name`,`created date`) 
+VALUES ('getgood','gamepass','John','Smith','2016-03-22');
+
+INSERT INTO `users` (`user id`,`password`,`first name`,`last name`,`created date`) 
+VALUES ('monkey56','monkpass','Sarah','Smith','2013-01-23');
+
+INSERT INTO `users` (`user id`,`password`,`first name`,`last name`,`created date`) 
+VALUES ('orangelass','orpass','Michelle','Obama','2002-01-16');
+
+INSERT INTO `users` (`user id`,`password`,`first name`,`last name`,`created date`) 
+VALUES ('pokefan99','pokepass','Robert','Boring','2014-07-04');
+
+INSERT INTO `users` (`user id`,`password`,`first name`,`last name`,`created date`) 
+VALUES ('wolfman','wolfpass','Arnold','Wolfman','2012-01-01');
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
