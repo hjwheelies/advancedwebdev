@@ -1,8 +1,8 @@
-<%@page import="edu.edgewood.ProjectRough.servlet.UIUtility" %>
-<%@page import = "javax.servlet.http.Cookie" %>
+<%@page import="edu.edgewood.RCS417Project.svc.UIUtility" %>
+<%@page import="edu.edgewood.RCS417Project.servlet.BlogServlet" %>	
 
 <%
-	Cookie myCookie = UIUtility.findCookie(request);
+	boolean isLogin = session.getAttribute(BlogServlet.USER_KEY) != null;
 %>
 
 <div id="headerWrapperDiv">
@@ -11,16 +11,12 @@
 				</div>
 				<br clear = "both"/>
 				<div style= "width: 100%">
-					<a href="movieList"> Add New Entry </a>
-					
 					<%
-						if(myCookie==null){
-							
-						
+						if (!isLogin){
 					%>
-					<a href="Login"> Login</a>
+					<a href="Login">Login</a>
 					<%} else{ %>
-					<a href="add.jsp"> New </a>
+					<a href="add.jsp"> New Post </a>
 					<a href="logout.jsp"> Logout </a>
 					<%} %>
 					</div>
